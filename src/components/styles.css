@@ -1,0 +1,62 @@
+#root {
+  margin:auto;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+#main {
+  display: flex;
+  justify-content:center;
+}
+#cards {
+  margin:auto;
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  gap: 30px;
+  width: 70%;
+  height: 90%;
+  grid-template-columns: repeat(7, 11%);
+  grid-template-rows: repeat(3, 33%);
+}
+
+.card {
+  flex: 0 0 11%;
+  border: 2px solid black;
+  border-radius: 10pt;
+  width: 100px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  font-size: 20pt;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.spades {
+  background-image: url(./assets/spades.png);
+  /*source: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Naipe_espadas.png/216px-Naipe_espadas.png */
+}
+
+.diamonds {
+	background-image: url(./assets/diamonds.png);
+  /*source: https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Naipe_ouros.png/216px-Naipe_ouros.png */
+}
+
+.hearts {
+	background-image: url(./assets/hearts.png);
+  /*source: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Naipe_copas.png/231px-Naipe_copas.png */
+}
+
+.clubs {
+  background-image: url(./assets/clubs.png);
+  /*source: https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Naipe_paus.png/200px-Naipe_paus.png */
+}
