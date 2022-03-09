@@ -16,10 +16,10 @@ function Deck() {
 
   const trickStep = (initialLine) => { 
     //Place chosen line on the middle of the array
-    const initialPosition = (initialLine)*7; //0, 7 ou 14 new array start
+    const initialPosition = (initialLine)*7; //0, 7 or 14 new array start
     const stackedDeck = [[...deck].splice(initialPosition, 21), [...deck].splice(0, initialPosition)].flat()
     
-    //Reorder cards
+    //Reorder cards in three lines
     const newDeck = stackedDeck.reduce((acc, element, index) =>{
       acc[index%3] = [...acc[index%3], element] 
       return(acc)
@@ -37,7 +37,7 @@ function Deck() {
     </div>
     <div role='deck' id='cards'>
       {deck.map(({ value, suit }, index) =>
-      <div role='card' key={index} className={ `card ${ suit }`  }>
+      <div role='card' currentid={index} data-testid={value+suit} key={index} className={ `card ${ suit }`  }>
         {value}
       </div>)}
     </div>
