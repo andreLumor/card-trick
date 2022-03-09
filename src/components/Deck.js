@@ -1,6 +1,5 @@
 import { useState } from "react";
 import './styles.css';
-
 const _ = require('lodash');
 
 const SUITS = ["spades", "hearts", "clubs", "diamonds"];
@@ -10,22 +9,34 @@ export const generateDeck = () => {
   const initialDeck = SUITS.flatMap((suit) => VALUES.flatMap(value => ({suit: suit, value: value})));
   return _.shuffle(initialDeck).slice(0, 21);
 }
-const DECK = generateDeck()
+
 
 function Deck() {
+  const [deck, setDeck]  = useState(generateDeck());
 
-  const handleIncrement = () => {
-    console.log('ihuu');
+  const trickStep = (initialLine) => { 
+    //Place chosen line on the middle of the array
+    const initialPosition = (initialLine)*7; //0, 7 ou 14 new array start
+    const stackedDeck = [[...deck].splice(initialPosition, 21), [...deck].splice(0, initialPosition)].flat()
+    
+    //Reorder cards
+    const newDeck = stackedDeck.reduce((acc, element, index) =>{
+      acc[index%3] = [...acc[index%3], element] 
+      return(acc)
+    }, [[], [], []]);
+
+    setDeck(newDeck.flat());
   };
+
   return (
   <div id='main' >
     <div id='buttons'>
-      <button onClick={handleIncrement}>Linha 1</button>
-      <button onClick={handleIncrement}>Linha 2</button>
-      <button onClick={handleIncrement}>Linha 3</button>
+      <button onClick={() => trickStep(2)}>Linha 1</button>
+      <button onClick={() => trickStep(0)}>Linha 2</button>
+      <button onClick={() => trickStep(1)}>Linha 3</button>
     </div>
     <div role='deck' id='cards'>
-      {DECK.map(({ value, suit }, index) =>
+      {deck.map(({ value, suit }, index) =>
       <div role='card' key={index} className={ `card ${ suit }`  }>
         {value}
       </div>)}

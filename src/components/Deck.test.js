@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Deck, { generateDeck } from "./Deck";
 
-describe("<Counter />", () => {
+describe("<Deck />", () => {
   it("should render 21 cards", async () => {
     render(<Deck />);
     const cards = await screen.findAllByRole('card');
