@@ -16,7 +16,6 @@
   margin:auto;
   display: grid;
   flex-wrap: wrap;
-  justify-content: center;
   justify-content: space-evenly;
   padding: 20px;
   gap: 30px;
@@ -39,6 +38,16 @@
   font-size: 20pt;
   font-family: sans-serif;
   font-weight: bold;
+}
+
+.modal {
+  display: flex;
+  place-items: center;
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+  flex-direction: column;
+  background-color: white;
 }
 
 .spades {
