@@ -7,7 +7,10 @@ const SUITS = ["spades", "hearts", "clubs", "diamonds"];
 const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const LINE_SIZE = 7
 const LINE_SHIFT = 2
-const N_LINES = 3
+const N_CARD_LINES = 3
+const TRICK_MAX_STEPS = 3
+const INITIAL_TRICK_STEP = 1
+const CHOSEN_CARD_INDEX = 10
 
 export const generateDeck = (removeCard = null) => { 
   var initialDeck = SUITS.flatMap((suit) => VALUES.map(value => ({suit: suit, value: value})));
@@ -31,19 +34,19 @@ function Deck( { initialModalState = false } ) {
     
     //Reorder cards in three lines
     const newDeck = stackedDeck.reduce((acc, element, index) =>{
-      acc[index%N_LINES] = [...acc[index%3], element] 
+      acc[index%N_CARD_LINES] = [...acc[index%N_CARD_LINES], element] 
       return(acc)
     }, [[], [], []]);
 
     setDeck(newDeck.flat());
-    if(step === 3){
+    if(step === TRICK_MAX_STEPS){
       showModal()
     }
   };
   
   const closeModal = () => {
-    setDeck(generateDeck(deck[10]));
-    setStep(1);
+    setDeck(generateDeck(deck[CHOSEN_CARD_INDEX]));
+    setStep(INITIAL_TRICK_STEP);
     setModal(false);
  }
 
@@ -60,7 +63,7 @@ function Deck( { initialModalState = false } ) {
         {value}
       </div>)}
     </div>
-    <Modal card={ deck[10] } state= { modalState } close= {() => closeModal()}/>
+    <Modal card={ deck[CHOSEN_CARD_INDEX] } state= { modalState } close= {() => closeModal()}/>
   </div>
   );
 };
